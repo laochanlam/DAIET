@@ -39,13 +39,13 @@ class Experiment:
 
         # Run switch
         print self.run_cmd("docker image pull p4lang/behavioral-model")
-        print self.run_cmd("screen -S bmv2 -d -m docker container run --name bmv2 --cpuset-cpus=\"4,5,6,7\" --network host -v "+self.folder+":/Testbed -e CMD_LINE=\""+cmdline+"\" -ti p4lang/behavioral-model bash")
+        print self.run_cmd("screen -S bmv2 -d -m docker container run --name bmv2 --cpuset-cpus=\"2,3,4,5\" --network host -v "+self.folder+":/Testbed -e CMD_LINE=\""+cmdline+"\" -ti p4lang/behavioral-model bash")
 
         # Run hosts
         print self.run_cmd("mkdir /var/run/netns")
         for i in range(1, self.number_of_hosts+2):
 
-            print self.run_cmd("screen -S h"+str(i)+" -d -m docker container run --name h"+str(i)+" -h h"+str(i)+" --cpuset-cpus=\""+str(7+(i*2)-1)+","+str(7+(i*2))+"\" --cap-add=NET_ADMIN --cap-add=SYS_ADMIN -v "+self.folder+":/Testbed -ti openjdk bash")
+            print self.run_cmd("screen -S h"+str(i)+" -d -m docker container run --name h"+str(i)+" -h h"+str(i)+" --cpuset-cpus=\""+str(5+i)+"\" --cap-add=NET_ADMIN --cap-add=SYS_ADMIN -v "+self.folder+":/Testbed -ti openjdk bash")
 
             time.sleep(10)
 
