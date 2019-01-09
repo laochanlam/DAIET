@@ -1,0 +1,3 @@
+Set default action for a match table: table_set_default <table name> <action name> <action parameters>
+Add entry to a match table: table_add <table name> <action name> <match fields> => <action parameters> [priority]
+Add mirroring session to unicast port: mirroring_add <mirror_id> <egress_port>
